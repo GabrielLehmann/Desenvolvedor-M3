@@ -35,7 +35,7 @@ Estamos procurando Desenvolvedores(as) `Front-end`, com sólidos conhecimentos e
 - [Crie um fork desse projeto;](https://github.com/agenciam3/Desenvolvedor-M3/fork)
 - No seu fork, codifique o layout seguindo as instruções abaixo;
 - Atualize o readme com as instruções necessárias para rodar o seu código;
-- Adicione também seu e-mail de contato ao readme do projeto ( caso seu e-mail do github esteja privado )
+- Adicione também seu e-mail de contato ao readme do projeto ( gabriel.lehmann@hotmail.com )
 - envie para [heraldo@digitalm3.com.br](mailto:heraldo@digitalm3.com.br?subject=Vaga%20DEV%20-%20Digital%20M3)
 
 
