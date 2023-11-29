@@ -1,10 +1,578 @@
 @import "reset", "variables";
 
+body{ font-family: 'Open Sans', sans-serif;}
+
 header {
   display: flex;
   justify-content: space-between;
-  padding: 16px 162px;
+  padding: 16px 10.8vw;
   border-bottom: 1px solid black;
+
+  .bag-count{
+    position: relative;
+    
+    #productBagCount{
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      background-color: $primaria;
+      color: $branco;
+      border-radius: 50%;
+      min-width: 12px;
+      min-height: 12px;
+      font-size: 10px;
+      padding: 2px;
+    }
+  }
+}
+
+.content{
+  min-height: calc(100vh - 93px);
+  margin-bottom: 35px;
+
+  .title-and-box{
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    
+    .title{
+      padding: 40px 10.8vw 65px 10.8vw;
+      font-weight: 400;
+      font-size: 32px;
+    }
+    
+    .filter-and-box{
+      display: none;
+    }
+    
+    .combo-box {    
+      padding: 50px 10.8vw 40px 10.8vw;
+      
+      
+      select {
+        display: none;
+        background-color: $branco;
+        color: $preto;
+        border: 1px solid $cinza2;
+        padding: 10px 0 10px 10px;
+        height: 38px;
+        cursor: pointer;
+        
+        option {
+          padding: 10px;
+        }
+      }
+      
+      .order-select{
+        border: 1px solid $cinza2;
+        padding: 10px;
+        position: relative;
+        user-select: none;
+        cursor: pointer;
+        
+        &>div{
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          border: 1px solid $cinza2;
+          left: -1px;
+          right: -1px;
+          top: 100%;
+          
+          button{
+            text-align: left ;
+            font-size: 16px;
+            font-weight: 400;
+            border: none;
+            padding: 10px;
+            color: $preto;
+            background-color: $branco;
+            cursor: pointer;
+            transition: 0.2s;
+            &:hover{
+              background-color: $primaria;
+              color: $branco;
+            }
+          }
+        }
+      }
+    }
+    
+    @media (max-width: 1023px) {
+      display: inline;
+      
+      
+      .title{
+        display: flex;
+        justify-content: center;
+        padding: 24px 10.8vw 12px 10.8vw;
+      }
+      
+      .filter-and-box{
+        display: flex;
+        padding: 0 10.8vw;
+        padding-bottom: 34px;
+      }
+      
+      .filter-mobile{
+        width: 100%;
+        padding: 8px 0;
+        display: block;
+        background-color: $branco;
+        color: $cinza2;
+        border: 1px solid $cinza2;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        cursor: pointer; 
+      }
+      
+      .box-mobile{
+        width: 100%;
+        padding: 8px 0;
+        display: block;
+        background-color: $branco;
+        color: $cinza2;
+        border: 1px solid $cinza2;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        cursor: pointer; 
+      }
+      
+      .combo-box{
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 1023px){
+    margin-bottom: 44px;
+  }
+}
+
+.store {
+  display: flex;
+  padding: 0 10.8vw;
+
+  @media (max-width: 1023px){
+    padding: 0 16px;
+  }
+}
+
+.products{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 43px 64px;
+  margin: 0 auto;
+
+  img{
+    width: 100%;
+  }
+  
+  h2{
+    text-transform: uppercase;
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: normal;
+    
+  }
+  
+  span{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: normal;
+  }
+  
+  p{
+    padding-bottom: 14px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: normal;
+    color: $cinza2;
+  }
+  
+  .product-card {
+    text-align: center;
+    
+    .buy-button {
+      background-color: $preto;
+      color: $branco;
+      border: none;
+      padding: 7px;
+      width: 100%;
+      height: 33px;
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  
+  }
+  
+  
+  @media (max-width: 1023px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 19px;
+    
+  }
+}
+
+.sidemenu-filter{
+  display: none;
+  
+  h2{
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    color: $cinza2;
+  }
+  
+  hr{
+    margin: 16px -20px 30px;
+  }
+  
+  .sidemenu-filter-header{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 1023px){
+    display: unset;
+  }
+}
+
+.sidemenu-ordenar{
+  display: none;
+  transform:translateX(100%) ;
+  transition: 0.2s;
+  
+  &.opened {
+    transform:translateX(0) ;
+    position: fixed;
+    overflow-y: scroll;
+    background-color: $branco;
+    inset: 0;
+    margin: 0;
+    padding: 16px 16px 82px 16px;
+  }
+  
+  hr{
+    margin: 16px -20px 30px;
+  }
+  
+  .sidemenu-ordernar-header{
+    display: flex;
+    justify-content: space-between;
+    
+    h2{
+      color: $cinza2;
+      font-size: 28px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+  }
+  
+  .ordernar-button{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
+    button{
+      text-align: left;
+      border: none;
+      background-color: $branco;
+      color: $preto;
+      font-size: 22px;
+      font-weight: 400;
+    }
+  }
+  
+  @media (max-width: 1023px){
+    display: unset;
+    position: fixed;
+    overflow-y: scroll;
+    background-color: $branco;
+    inset: 0;
+    margin: 0;
+    padding: 16px 16px 82px 16px;
+  }
+}
+
+.filter-menu{
+  margin-right: 44px;
+  transition: 0.2s;
+  
+  &.opened{
+    transform: translateX(0);
+  }
+  
+  #title-colors{
+    margin-top: 0;
+  }
+  
+  .filter-title{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    margin-bottom: 14px;
+    
+    
+    @media (max-width: 1023px){
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: $cinza2;
+      
+      &::after{
+        content: "";
+        width: 19px;
+        height: 14px;
+        background-image: url("../img/Vector 3.svg");   
+      }
+    }
+  }
+  
+  ul{
+    overflow: hidden;
+    
+    
+    li{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      font-weight: 400;
+      font-size: 14px;
+      
+      .check{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 16px;
+        width: 16px;
+        border: 1px $cinza1 solid;
+        cursor: pointer;
+      }
+      
+      .mark{
+        transition: 0.2s;
+      }
+      
+      input:checked + .label .mark{
+        width: 12px;
+        height: 12px;
+        background-color: $primaria;
+      }
+      
+      #amarelo{
+        display: none;
+      }
+      #azul{
+        display: none;
+      }
+      #branco{
+        display: none;
+      }
+      #cinza{
+        display: none;
+      }
+      #laranja{
+        display: none;
+      }
+      #verde{
+        display: none;
+      }
+      #vermelho{
+        display: none;
+      }
+      #preto{
+        display: none;
+      }
+      #rosa{
+        display: none;
+      }
+      #vinho{
+        display: none;
+      }
+    }
+  }
+  
+  ul#tamanhos {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 160px;
+    gap: 8px;
+    margin-bottom: 24px;
+    
+    button {
+      width: 32px;
+      height: 32px;
+      border: 1px solid $cinza1;
+      color: $cinza1;
+      background-color: initial;
+      transition: border-color 0.3s;
+      cursor: pointer;
+      
+      &.selected {
+        border-color: $primaria;
+        color: $preto;
+      }
+    }
+  }
+  
+  
+  ul#faixa-preco{
+    li{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 0;
+      font-weight: 400;
+      font-size: 14px;
+      
+      
+      .check{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 16px;
+        width: 16px;
+        border: 1px $cinza1 solid;
+        cursor: pointer;
+      }
+      
+        .mark{
+          transition: 0.2s;
+        }
+        
+        input:checked + .label .mark{
+          width: 12px;
+          height: 12px;
+          background-color: $primaria;
+        }
+        
+        #preco0{
+          display: none;
+        }
+        #preco51{
+          display: none;
+        }
+        #preco151{
+          display: none;
+        }
+        #preco301{
+          display: none;
+        }
+        #preco500{
+          display: none;
+        }
+      }
+    }
+    #allColors{
+      white-space: nowrap;
+      text-decoration: underline;
+      background-color:$branco ;
+      color: $cinza2;
+      border: none;
+      margin: 10px 0;
+      padding: 0;
+      cursor: pointer;
+      
+      @media (max-width: 1023px) {
+      display: none;
+    }
+  }
+  
+  .apply-and-clear{
+    display: none;
+  }
+  
+  @media (max-width: 1023px) {
+    transform: translateX(-100%);
+    position: fixed;
+    overflow-y: scroll;
+    background-color: $branco;
+    inset: 0;
+    margin: 0;
+    padding: 16px 16px 82px 16px;
+    &.opened {
+      position: fixed;
+      overflow-y: scroll;
+      background-color: $branco;
+      inset: 0;
+      margin: 0;
+      padding: 16px 16px 0px 16px;
+    }
+    
+    .closeButton {
+      display: block;
+    }
+    
+    .filter-menu.opened {
+      display: block;
+    }
+
+    .apply-and-clear{
+      display: flex;
+      margin: 30px 0 17px;
+      gap: 23px;
+      left: 16px;
+      right: 16px;
+      bottom: 0;
+
+      .apply-button{
+        flex: 1;
+        padding: 8px 31px;
+        border: none;
+        color: $branco;
+        background-color: $primaria;
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+
+      .clear-button{
+        flex: 1;
+        padding: 8px 31px;
+        border: 1px solid #666;
+        color: $cinza2;
+        background-color: $branco;
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+    }
+  }
+
+}
+
+.loadMore{
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+
+  #load-more{
+    padding: 8px 31px;
+    border: none;
+    color: $branco;
+    background-color: $primaria;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
 }
 
 footer {
@@ -13,59 +581,4 @@ footer {
   padding: 7px 0;
   color: $branco;
   background-color: $preto;
-}
-
-.product-card {
-  margin: 2px;
-  padding: 5px;
-  text-align: center;
-  width: calc(33.33% - 20px);
-  display: inline-block;
-  box-sizing: border-box;
-
-  .buy-button {
-    background-color: $preto;
-    color: $branco;
-    border: none;
-    padding: 7px;
-    width: 100%;
-    height: 33px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-  }
-
-  @media (max-width: 768px) {
-    width: calc(50% - 20px);
-  }
-}
-// Defina as variáveis de estilo
-$cor-fundo-select: #fff;
-$cor-texto-select: #333;
-
-// Estilos do combo box
-.combo-box {
-  position: relative;
-
-  select {
-    background-color: $cor-fundo-select;
-    color: $cor-texto-select;
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 100%;
-    appearance: none;
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-      outline: none;
-      border-color: #3498db; // Adicione um destaque ao hover ou focus
-    }
-  }
-}
-
-// Estilo dos itens do select
-.combo-box select option {
-  padding: 10px;
 }
